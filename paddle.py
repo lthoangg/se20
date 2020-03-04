@@ -10,6 +10,8 @@ YELLOW = (255,255,0)
 PINK = (255,0,255)
 PURPLE = (152,0,255)
 colors = [ WHITE, RED, BLUE, BLACK, GREEN, YELLOW, PINK, PURPLE ]
+
+PADDLE_IMGS = [pygame.image.load(os.path.join("imgs","paddle.png"))]
 global colors
 class Paddle:
     width = 15
@@ -18,12 +20,11 @@ class Paddle:
     def __init__(self,player):
         self.player = player
         self.y= 40
+        self.img = PADDLE_IMGS[0]
         if self.player ==1:
             self.x = 20
         else:
             self.x = 989
-
-        
 
 
     def move(self):
@@ -49,7 +50,7 @@ class Paddle:
             self.vel=-20
         elif self.y < 0:
             self.vel=20
-        pygame.draw.rect(WIN ,color,(self.x,self.y,self.width,self.height))
-        
+        #pygame.draw.rect(WIN ,color,(self.x,self.y,self.width,self.height))
+        WIN.blit(self.img,(self.x,self.y))
   #  def get_mask(self):
-        # return pygame.mask.from_surface((self.x,self.y,self.width,self.height))
+        # return pygame.mask.from_surface()
