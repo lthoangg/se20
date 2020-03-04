@@ -16,11 +16,13 @@ def main():
 
 
     p1 =paddle.Paddle()
+    p2 =paddle.Paddle(WIN_WIDTH-15-10)
     run = True
     while run:
         WIN.blit(bg_IMGS[0],(0,0))
 
         p1.move()
+        p2.move()
         #pygame.draw.rect(WIN,(255,0,0),(10,10,50,50))
         clock.tick(30)
         for event in pygame.event.get():
@@ -29,6 +31,7 @@ def main():
                 pygame.quit()
                 quit()
         p1.draw(WIN)
+        p2.draw(WIN)
         pygame.display.update()
 
 
