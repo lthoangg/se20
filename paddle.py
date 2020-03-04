@@ -18,6 +18,7 @@ class Paddle:
         self.x = x
         self.y = y
 
+
     def move(self):
         self.y+=self.vel
         key_pressed= pygame.key.get_pressed()

@@ -14,6 +14,7 @@ def main():
     pygame.display.set_caption("Pong")
     clock = pygame.time.Clock()
 
+
     p1 =paddle.Paddle()
     run = True
     while run:
