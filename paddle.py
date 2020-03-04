@@ -51,3 +51,5 @@ class Paddle:
             self.vel=20
         pygame.draw.rect(WIN ,color,(self.x,self.y,self.width,self.height))
         
+  #  def get_mask(self):
+        # return pygame.mask.from_surface((self.x,self.y,self.width,self.height))

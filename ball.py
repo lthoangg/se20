@@ -2,6 +2,7 @@ import pygame
 import random
 import paddle
 import os
+import time
 BALL_IMGS = [pygame.image.load(os.path.join("imgs", "ball1.png"))]
 class Ball:
     r=10
@@ -14,12 +15,12 @@ class Ball:
         if ran==1: self.vel = -self.vel
         else: self.vel = self.vel
     def move(self):
-        self.x+=self.vel 
+        self.x+=self.vel
+        if self.x <=0 or self.x >=1024:
+            self.vel = -self.vel 
     
     def draw(self,WIN):
-
-
-        
-        WIN.blit(BALL_IMGS[0],(self.x,self.y))
+        img = pygame.transform.scale(BALL_IMGS[0],(40,40))
+        WIN.blit(img,(self.x,self.y))
 
         
