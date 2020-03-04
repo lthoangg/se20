@@ -17,6 +17,7 @@ def main():
     run = True
     while run:
         
+        
         p1.move()
         #pygame.draw.rect(WIN,(255,0,0),(10,10,50,50))
         clock.tick(30)
