@@ -11,19 +11,22 @@ class Ball:
         self.r = 10
         self.x=512-self.r
         self.y=275-self.r
-        ran=random.randint(1,2)
-        if ran==1: self.vel = -self.vel
+
+        self.img = pygame.transform.scale(BALL_IMGS[0],(40,40))
+
+        rd=random.randint(1,2)
+        if rd==1: self.vel = -self.vel
         else: self.vel = self.vel
     def move(self):
         self.x+=self.vel
         if self.x <=0 or self.x >=1024:
-            self.vel = -self.vel 
+            self.vel = -self.vel
+        if self.collide(paddle.Paddle):
+            self.vel = - self.vel
     
     def draw(self,WIN):
-        img = pygame.transform.scale(BALL_IMGS[0],(40,40))
-        WIN.blit(img,(self.x,self.y))
+        WIN.blit(self.img,(self.x,self.y))
 
-        
     def collide(self, paddle):
         p_mask = paddle.get_mask(paddle)
         mask = pygame.mask.from_surface(self.img)
