@@ -1,5 +1,8 @@
 import pygame
 import random
+import paddle
+import os
+BALL_IMGS = [pygame.image.load(os.path.join("imgs", "ball1.png"))]
 class Ball:
     r=10
     vel = 35
@@ -11,10 +14,9 @@ class Ball:
         if ran==1: self.vel = -self.vel
         else: self.vel = self.vel
     def move(self):
-        self.x+=vel 
+        self.x+=self.vel 
     
-    def draw(self,WIN,color):
+    def draw(self,WIN):
+        WIN.blit(BALL_IMGS[0],(self.x,self.y))
 
-        pygame.draw.circle(WIN, color, (self.x , self.y), self.r)
-        
         

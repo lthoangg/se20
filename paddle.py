@@ -9,7 +9,8 @@ GREEN = (0,252,0)
 YELLOW = (255,255,0)
 PINK = (255,0,255)
 PURPLE = (152,0,255)
-
+colors = [ WHITE, RED, BLUE, BLACK, GREEN, YELLOW, PINK, PURPLE ]
+global colors
 class Paddle:
     width = 15
     height = 100
@@ -43,10 +44,10 @@ class Paddle:
             elif key_pressed[pygame.KEYUP]:
                 player.vel =0
 
-    def draw(self, WIN, color=PINK): 
-        if self.y > 551-self.height :
+    def draw(self, WIN, color=colors[7]):
+        if self.y > 551-self.height:
             self.vel=-20
-        if self.y < 0:
+        elif self.y < 0:
             self.vel=20
         pygame.draw.rect(WIN ,color,(self.x,self.y,self.width,self.height))
         
