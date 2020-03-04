@@ -17,6 +17,7 @@ class Ball:
         self.x+=self.vel 
     
     def draw(self,WIN):
+        
         WIN.blit(BALL_IMGS[0],(self.x,self.y))
 
         
