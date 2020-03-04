@@ -30,7 +30,9 @@ class Paddle:
             self.vel =0
 
     def draw(self, WIN, color=PINK): 
-        if self.y > 551-self.height or self.y<0:
-            self.vel=-self.vel
+        if self.y > 551-self.height :
+            self.vel=-20
+        if self.y < 0:
+            self.vel=20
         pygame.draw.rect(WIN ,color,(self.x,self.y,self.width,self.height))
         
