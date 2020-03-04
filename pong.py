@@ -7,9 +7,9 @@ def main():
     pygame.init
     WIN_WIDTH = WIN_HEIGHT = 600
     WIN = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
-    pygame.display.set_icon(pygame.image.load(os.path.join("imgs","ball1.png")))
+    WIN_ICON = BALL_IMGS[0]
+    pygame.display.set_icon(WIN_ICON)
     pygame.display.set_caption("Pong")
-
     clock = pygame.time.Clock()
     run = True
     while run:
