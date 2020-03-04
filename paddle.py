@@ -14,20 +14,34 @@ class Paddle:
     width = 15
     height = 100
     vel = 0
-    def __init__(self,x=20,y=40):
-        self.x = x
-        self.y = y
+    def __init__(self,player):
+        self.player = player
+        self.y= 40
+        if self.player ==1:
+            self.x = 20
+        else:
+            self.x = 989
+
+        
 
 
     def move(self):
         self.y+=self.vel
         key_pressed= pygame.key.get_pressed()
-        if key_pressed[pygame.K_UP]:
-            self.vel=-20
-        elif key_pressed[pygame.K_DOWN]:
-            self.vel=+20
-        elif key_pressed[pygame.KEYUP]:
-            self.vel =0
+        if self.player==1:
+            if key_pressed[pygame.K_w]:
+                self.vel=-20
+            elif key_pressed[pygame.K_s]:
+                self.vel=+20
+            elif key_pressed[pygame.KEYUP]:
+                player.vel =0
+        else:
+            if key_pressed[pygame.K_UP]:
+                self.vel=-20
+            elif key_pressed[pygame.K_DOWN]:
+                self.vel=+20
+            elif key_pressed[pygame.KEYUP]:
+                player.vel =0
 
     def draw(self, WIN, color=PINK): 
         if self.y > 551-self.height :

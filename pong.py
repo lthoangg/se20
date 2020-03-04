@@ -15,8 +15,8 @@ def main():
     clock = pygame.time.Clock()
 
 
-    p1 =paddle.Paddle()
-    p2 =paddle.Paddle(WIN_WIDTH-15-10)
+    p1 =paddle.Paddle(1)
+    p2 =paddle.Paddle(2)
     run = True
     while run:
         WIN.blit(bg_IMGS[0],(0,0))
