@@ -24,3 +24,11 @@ class Ball:
         WIN.blit(img,(self.x,self.y))
 
         
+    def collide(self, paddle):
+        p_mask = paddle.get_mask(paddle)
+        mask = pygame.mask.from_surface(self.img)
+        offset = (self.x - paddle.x, self.y - round(paddle.y))
+
+        point = p_mask.overlay(mask, offset)
+        if point: return True
+        else: return False

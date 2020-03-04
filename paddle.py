@@ -10,9 +10,9 @@ YELLOW = (255,255,0)
 PINK = (255,0,255)
 PURPLE = (152,0,255)
 colors = [ WHITE, RED, BLUE, BLACK, GREEN, YELLOW, PINK, PURPLE ]
+global colors
 
 PADDLE_IMGS = [pygame.image.load(os.path.join("imgs","paddle.png"))]
-global colors
 class Paddle:
     width = 15
     height = 100
@@ -25,7 +25,6 @@ class Paddle:
             self.x = 20
         else:
             self.x = 989
-
 
     def move(self):
         self.y+=self.vel
@@ -44,13 +43,13 @@ class Paddle:
                 self.vel=+20
             elif key_pressed[pygame.KEYUP]:
                 player.vel =0
-
-    def draw(self, WIN, color=colors[7]):
         if self.y > 551-self.height:
             self.vel=-20
         elif self.y < 0:
             self.vel=20
+
+    def draw(self, WIN, color=colors[7]):
         #pygame.draw.rect(WIN ,color,(self.x,self.y,self.width,self.height))
         WIN.blit(self.img,(self.x,self.y))
-  #  def get_mask(self):
-        # return pygame.mask.from_surface()
+    def get_mask(self):
+        return pygame.mask.from_surface(self.img)
