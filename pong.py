@@ -4,7 +4,7 @@ import time
 BALL_IMGS = [pygame.image.load(os.path.join("imgs", "ball1.png"))]
 
 def main():
-    pygame.init
+    pygame.init()
     WIN_WIDTH = WIN_HEIGHT = 600
     WIN = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
     WIN_ICON = BALL_IMGS[0]
