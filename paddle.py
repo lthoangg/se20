@@ -19,6 +19,7 @@ class Paddle:
             self.vel=+20
 
 
+
     def draw(self, WIN): 
         pygame.draw.rect(WIN ,(255,0,0),(self.x,self.y,self.width,self.height))
         
