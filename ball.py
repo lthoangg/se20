@@ -6,7 +6,7 @@ import time
 BALL_IMGS = [pygame.image.load(os.path.join("imgs", "ball1.png"))]
 class Ball:
     r=10
-    vel = 35
+    vel = 25
     def __init__(self):
         self.r = 10
         self.x=512-self.r
