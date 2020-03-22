@@ -9,17 +9,10 @@ GREEN = (0,252,0)
 YELLOW = (255,255,0)
 PINK = (255,0,255)
 PURPLE = (152,0,255)
-<<<<<<< HEAD
-colors = [ WHITE, RED, BLUE, BLACK, GREEN, YELLOW, PINK, PURPLE ]
-global colors
-
-PADDLE_IMGS = [pygame.image.load(os.path.join("imgs","paddle.png"))]
-=======
 #colors = [ WHITE, RED, BLUE, BLACK, GREEN, YELLOW, PINK, PURPLE ]
 
 PADDLE_IMGS = [pygame.image.load(os.path.join("imgs","paddle.png"))]
 #global colors
->>>>>>> paddle
 class Paddle:
     width = 15
     height = 100
@@ -50,11 +43,8 @@ class Paddle:
                 self.vel=+20
             elif key_pressed[pygame.KEYUP]:
                 player.vel =0
-<<<<<<< HEAD
-=======
 
     def draw(self, WIN ):
->>>>>>> paddle
         if self.y > 551-self.height:
             self.vel=-20
         elif self.y < 0:
