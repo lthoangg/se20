@@ -50,8 +50,9 @@ class Paddle:
         elif self.y < 0:
             self.vel=20
 
-    def draw(self, WIN, color=colors[7]):
-        #pygame.draw.rect(WIN ,color,(self.x,self.y,self.width,self.height))
+    def draw(self, WIN ):
         WIN.blit(self.img,(self.x,self.y))
+
+        
     def get_mask(self):
         return pygame.mask.from_surface(self.img)
