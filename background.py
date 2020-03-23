@@ -6,5 +6,7 @@ class Background:
         self.x =0
         self.y =0
         self.bg = bg_IMGS[0]
+        
     def draw(self,WIN):
-        WIN.blit(self.bg,(self.x,self.y))
+        img = pygame.transform.scale(self.bg,(WIN.get_width(), WIN.get_height()))
+        WIN.blit(img,(self.x,self.y))
