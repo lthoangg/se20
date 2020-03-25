@@ -43,14 +43,13 @@ class Paddle:
                 self.vel=+20
             elif key_pressed[pygame.KEYUP]:
                 player.vel =0
-
-    def draw(self, WIN ):
         if self.y > 551-self.height:
             self.vel=-20
         elif self.y < 0:
             self.vel=20
 
     def draw(self, WIN ):
+        
         WIN.blit(self.img,(self.x,self.y))
 
         
