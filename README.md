@@ -5,6 +5,9 @@
 # SRS
 https://docs.google.com/document/d/1XIpoA5kVK2w_tOnLX1P7NhpFgOFBLm6DvLKbSzcivWI/edit
 
+# SDD
+https://docs.google.com/document/d/1PyHZUekc7BEnxEnvDKqmJlRgATF6jzzxKo8YuufG6nY/edit
+
 # Members
 - Le Trong Hoang - BI9-241
 - Luu Quy Nhan - BI9-178
