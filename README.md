@@ -6,7 +6,7 @@
 https://docs.google.com/document/d/1XIpoA5kVK2w_tOnLX1P7NhpFgOFBLm6DvLKbSzcivWI/edit
 
 # SDD
-https://docs.google.com/document/d/1PyHZUekc7BEnxEnvDKqmJlRgATF6jzzxKo8YuufG6nY/edit
+https://docs.google.com/document/d/1gyMDxo_JSJgqN7Sm19erR4WC7mT-oCPoyNaBVIVe5ig/edit?usp=sharing
 
 # Members
 - Le Trong Hoang - BI9-241
