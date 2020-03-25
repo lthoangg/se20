@@ -8,9 +8,10 @@ import background
 #Drawing graphic
 def draw(WIN, bg, p1 , p2 , b ): 
     bg.draw(WIN)
+    b.draw(WIN)
     p1.draw(WIN)
     p2.draw(WIN)
-    b.draw(WIN)
+    
 
 #Calculating logical    
 def move(p1, p2, b):
@@ -43,7 +44,7 @@ def main():
     #Game running
     while run: 
         #pygame.draw.rect(WIN,(255,0,0),(10,10,50,50))
-        clock.tick(60) #FPS of game
+        clock.tick(30) #FPS of game
         for event in pygame.event.get():
             # Mouse click
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -55,14 +56,16 @@ def main():
                     print('right')
                 print(str(pygame.mouse.get_pos()[0]) + " " + str(pygame.mouse.get_pos()[1]))
                 
-                        
+            # Quit button            
             if event.type == pygame.QUIT:
                 print("Out game")
                 run = False
                 pygame.quit()
-                quit() 
-        
-        
+                quit()
+
+        if  b.collide(p1) is True or b.collide(p2) is True:
+            pass
+
         draw(WIN, bg, p1, p2, b)
         move(p1, p2, b)
         pygame.display.update()
