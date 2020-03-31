@@ -2,7 +2,10 @@ import pygame
 import random
 import os
 import time
+pygame.mixer.init()
 BALL_IMGS = [pygame.image.load(os.path.join("imgs", "ball1.png"))]
+collideSound = pygame.mixer.Sound('beep.wav')
+
 class Ball:
     r=20
     vx = 5
@@ -28,19 +31,20 @@ class Ball:
         self.y += self.vy
         if self.x <=0 or self.x >= self.WIN.get_width() - self.r*2:
             print("Oops")
-        
         if self.y <= 0:
             self.vy = abs(self.vy)
             print("wall top")
         if self.y + 2*self.r == 720:
             self.vy = - abs(self.vy)
             print("Wall bottom")
-    
+
     def draw(self,WIN):        
         WIN.blit(self.img,(self.x,self.y))
 
+
+
     def collide(self, paddle):
-        
+
         # Left: 35
         # Right: 1205
         if paddle.y+100 > self.y >= paddle.y:
@@ -53,6 +57,7 @@ class Ball:
                 if ran <= 4:
                     self.vy = ran 
                 else: self.vy = ran - 9
+                collideSound.play()
             if paddle.player == 2 and self.x == 1205:
                 print("Right")
                 self.vx = -self.vx
@@ -62,4 +67,4 @@ class Ball:
                 if ran <= 4:
                     self.vy = ran 
                 else: self.vy = ran - 9
-            
+                collideSound.play()

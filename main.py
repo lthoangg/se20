@@ -57,6 +57,8 @@ def button(msg, x, y, w, h, ic, ac, action=None):
 #Main menu
 def menu():
     background_image = pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "menu.png")))
+    music = pygame.mixer.music.load('music.mp3')
+    pygame.mixer.music.play(-1)
 
     pygame.init()
     intro = True
