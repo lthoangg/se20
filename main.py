@@ -79,8 +79,8 @@ def game_intro():
         TextRect.center = ((display_width / 2), (display_height / 2))
         windows.blit(TextSurf, TextRect)
 
-        button("GO!", 150, 450, 100, 50, green, bright_green, main)
-        button("Quit", 550, 450, 100, 50, red, bright_red, exit)
+        button("GO!", 450, 450, 100, 50, green, bright_green, main)
+        button("Quit", 750, 450, 100, 50, red, bright_red, exit)
 
         pygame.display.update()
         clock.tick(15)
