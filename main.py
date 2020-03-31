@@ -61,7 +61,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
 
 #Main menu
 def game_intro():
-    background_image = pygame.image.load("imgs", "menu.png")
+    #background_image = pygame.image.load("imgs", "menu.png")
 
     pygame.init()
     intro = True
@@ -77,7 +77,7 @@ def game_intro():
         largeText = pygame.font.Font('freesansbold.ttf', 115)
         TextSurf, TextRect = text_objects("Ping Pong", largeText)
         TextRect.center = ((display_width / 2), (display_height / 2))
-        windows.blit(background_image, TextSurf, TextRect)
+        windows.blit(TextSurf, TextRect)
 
         button("GO!", 150, 450, 100, 50, green, bright_green, main)
         button("Quit", 550, 450, 100, 50, red, bright_red, exit)
@@ -96,7 +96,6 @@ def main():
     WIN_ICON = pygame.image.load(os.path.join("imgs", "ball1.png"))
 
     # pygame.display.set_icon(WIN_ICON)
-    pygame.display.set_caption("Game Pong")
     clock = pygame.time.Clock()
 
     p1 = paddle.Paddle(1, WIN)
