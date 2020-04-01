@@ -41,8 +41,6 @@ class Ball:
     def draw(self,WIN):        
         WIN.blit(self.img,(self.x,self.y))
 
-
-
     def collide(self, paddle):
         
         # Left: 35
