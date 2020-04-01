@@ -26,8 +26,6 @@ class Ball:
     def move(self):
         self.x += self.vx
         self.y += self.vy
-        if self.x <=0 or self.x >= self.WIN.get_width() - self.r*2:
-            print("Oops")
         
         if self.y <= 0:
             self.vy = abs(self.vy)
@@ -62,4 +60,9 @@ class Ball:
                 if ran <= 4:
                     self.vy = ran 
                 else: self.vy = ran - 9
+
+    def lose(self):
+        if self.x <=0 or self.x >= self.WIN.get_width() - self.r*2:
+            print("Oops")
+            return True
             

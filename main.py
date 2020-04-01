@@ -31,6 +31,8 @@ def move(p1, p2, b):
     b.move()
     b.collide(p1)
     b.collide(p2)
+    if b.lose():
+        main()
 
 
 def text_objects(text, font):
