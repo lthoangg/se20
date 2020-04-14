@@ -29,8 +29,6 @@ class Ball:
     def move(self):
         self.x += self.vx
         self.y += self.vy
-        if self.x <=0 or self.x >= self.WIN.get_width() - self.r*2:
-            print("Oops")
         if self.y <= 0:
             self.vy = abs(self.vy)
             print("wall top")
@@ -55,7 +53,7 @@ class Ball:
                 ran = random.randint(1, 9)
                 print(ran)
                 if ran <= 4:
-                    self.vy = ran 
+                    self.vy = ran
                 else: self.vy = ran - 9
                 collideSound.play()
             if paddle.player == 2 and self.x == 1205:
@@ -68,3 +66,11 @@ class Ball:
                     self.vy = ran 
                 else: self.vy = ran - 9
                 collideSound.play()
+
+    def lose(self):
+        if self.x <=0:
+            draw.clear()
+            p2.score += 1
+        if self.x >= self.WIN.get_width() - self.r*2:
+            draw.clear()
+            p1.score += 1
