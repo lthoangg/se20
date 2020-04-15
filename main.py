@@ -72,7 +72,7 @@ def menu():
                 pygame.quit()
                 quit()
 
-        windows.fill(Color.white)
+        windows.fill(Color.gray)
         windows.blit(background_image,(300, 50))
         largeText = pygame.font.Font('freesansbold.ttf', 115)
         TextSurf, TextRect = text_objects("Ping Pong", largeText)
@@ -107,7 +107,7 @@ def main():
 
     # Game running
     while run:
-        clock.tick(120)  # FPS of game
+        clock.tick(90)  # FPS of game
         for event in pygame.event.get():
             # Quit button            
             if event.type == pygame.QUIT:
