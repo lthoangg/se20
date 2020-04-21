@@ -68,7 +68,7 @@ class Ball:
                 collideSound.play()
 
     def lose(self):
-        if self.x <=0:
+        if self.x <= 0:
             draw.clear()
             p2.score += 1
         if self.x >= self.WIN.get_width() - self.r*2:
