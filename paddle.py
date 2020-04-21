@@ -2,12 +2,12 @@ import pygame
 import os
 import time
 
-PADDLE_IMGS = [pygame.image.load(os.path.join("imgs","paddle.png"))]
+PADDLE_IMGS = [pygame.image.load(os.path.join("imgs","paddle2.png"))]
 
 class Paddle:
     width = 15
     height = 100
-    vel = 4
+    vel = 0
     def __init__(self,player, WIN):
         self.player = player
         self.y= 310
