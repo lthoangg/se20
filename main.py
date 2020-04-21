@@ -10,6 +10,19 @@ pygame.init()
 display_width = 1280
 display_height = 720
 
+black = (0, 0, 0)
+white = (255, 255, 255)
+red = (200, 0, 0)
+green = (0, 200, 0)
+bright_red = (255, 0, 0)
+bright_green = (0, 255, 0)
+gray = (96, 96, 96)
+
+WIN_WIDTH = 1280  # Screen WIDTH
+WIN_HEIGHT = 720  # Screen HEIGHT
+WIN = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
+WIN_ICON = pygame.image.load(os.path.join("imgs", "ball1.png"))
+
 #block_color = (53, 115, 255)
 
 windows = pygame.display.set_mode((display_width, display_height))
@@ -31,9 +44,15 @@ def move(p1, p2, b):
     b.move()
     b.collide(p1)
     b.collide(p2)
-    if b.lose():
-        main()
-
+    if b.lose() ==1:
+        p2.score +=1
+        print (p1.score, p2.score)
+        b.__init__(WIN)
+    if b.lose() ==2:
+        p1.score +=1
+        print (p1.score, p2.score)
+        b.__init__(WIN)
+    
 
 def text_objects(text, font):
     textSurface = font.render(text, True, Color.black)
@@ -85,15 +104,11 @@ def menu():
         pygame.display.update()
 
 
-
 # Main game
 def main():
     print("In game")
     pygame.init()
-    WIN_WIDTH = 1280  # Screen WIDTH
-    WIN_HEIGHT = 720  # Screen HEIGHT
-    WIN = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
-    WIN_ICON = pygame.image.load(os.path.join("imgs", "ball1.png"))
+    
 
     # pygame.display.set_icon(WIN_ICON)
     clock = pygame.time.Clock()
@@ -107,7 +122,7 @@ def main():
 
     # Game running
     while run:
-        clock.tick(90)  # FPS of game
+        clock.tick(60)  # FPS of game
         for event in pygame.event.get():
             # Quit button            
             if event.type == pygame.QUIT:
@@ -115,7 +130,6 @@ def main():
                 run = False
                 pygame.quit()
                 quit()
-
         draw(WIN, bg, p1, p2, b)
         move(p1, p2, b)
         pygame.display.update()

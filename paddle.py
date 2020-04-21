@@ -12,6 +12,7 @@ class Paddle:
         self.player = player
         self.y= 310
         self.img = PADDLE_IMGS[0]
+        self.score = 0
         if self.player ==1:
             self.x = 20
         else:

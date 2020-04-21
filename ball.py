@@ -18,7 +18,7 @@ class Ball:
         self.img = pygame.transform.scale(BALL_IMGS[0],(2*self.r, 2*self.r))
         ran=random.randint(1,2)
         if ran==1: self.vx = - self.vx
-        
+
         ran = random.randint(1, 9)
         if ran <= 4:
             self.vy = ran 
@@ -68,5 +68,12 @@ class Ball:
     def lose(self):
         if self.x <=0 or self.x >= self.WIN.get_width() - self.r*2:
             print("Oops")
-            return True
-        
+
+            if self.x <= 0:
+                self.vx = abs(self.vx)
+                return 1
+            elif self.x >= self.WIN.get_width() - self.r*2:
+                self.vx = -abs(self.vx)
+                return 2
+            else:
+                return 3
