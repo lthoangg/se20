@@ -28,6 +28,13 @@ WIN_ICON = pygame.image.load(os.path.join("imgs", "ball1.png"))
 windows = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('Ping Pong')
 
+#Text draw
+def text(surf, text, size, x, y):
+    font = pygame.font.SysFont("comicsansms", 20)
+    text_surface = font.render(text, True, Color.black)
+    text_rect = text_surface.get_rect()
+    text_rect.midtop = (x, y)
+    surf.blit(text_surface, text_rect)
 
 # Drawing graphic
 def draw(WIN, bg, p1, p2, b):
@@ -130,6 +137,8 @@ def main():
                 run = False
                 pygame.quit()
                 quit()
+        
+        text(WIN, str(p1.score),150, 320,540 )
         draw(WIN, bg, p1, p2, b)
         move(p1, p2, b)
         pygame.display.update()
