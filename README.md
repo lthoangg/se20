@@ -1,4 +1,4 @@
-#PING PONG GAME
+# PROJECT: PING PONG GAME
 
 # Requirement
 - python 3.6+
