@@ -67,7 +67,6 @@ class Ball:
                 collideSound.play()
     def lose(self):
         if self.x <=0 or self.x >= self.WIN.get_width() - self.r*2:
-            print("Oops")
 
             if self.x <= 0:
                 self.vx = abs(self.vx)
