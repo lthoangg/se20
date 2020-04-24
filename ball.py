@@ -3,7 +3,7 @@ import random
 import os
 import time
 pygame.mixer.init()
-BALL_IMGS = [pygame.image.load(os.path.join("imgs", "ball4.png"))]
+BALL_IMGS = [pygame.image.load(os.path.join("imgs/balls", "ball4.png"))]
 collideSound = pygame.mixer.Sound(os.path.join('sound','beep.wav'))
 
 class Ball:

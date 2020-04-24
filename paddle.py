@@ -2,20 +2,13 @@ import pygame
 import os
 import time
 
-PADDLE_IMGS = [pygame.image.load(os.path.join("imgs","paddle2.png"))]
+PADDLE_IMGS = [pygame.image.load(os.path.join("imgs/paddles","paddle1.png"))]
 
-class Paddle:
-    width = 15
-    height = 100
-    vel = 0
-    def __init__(self,player, WIN):
-        self.player = player
-        self.y= 310
-        self.img = PADDLE_IMGS[0]
-        if self.player ==1:
-            self.x = 20
-        else:
-            self.x = WIN.get_width() - self.img.get_width() - 20
+class Paddle(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = PADDLE_IMGS[0]
+        self.rect = self.image.get_rect()
 
     def move(self):
         self.y+=self.vel
@@ -32,9 +25,9 @@ class Paddle:
             elif key_pressed[pygame.K_DOWN]:
                 self.vel=+4
             
-    def draw(self, WIN ):
+    def draw(self, WIN):
         if self.y > WIN.get_height()-self.height:
             self.vel=-4
         elif self.y < 0:
             self.vel=4
-        WIN.blit(self.img,(self.x,self.y))
+        WIN.blit(self.imgage,(self.x,self.y))
