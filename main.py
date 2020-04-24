@@ -20,27 +20,21 @@ def menu():
     run = True
     # Running
     while run:
-        clock.tick(90)
-        mouse = pygame.mouse.get_pos()
-        click = pygame.mouse.get_pressed()
+        clock.tick(60)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 print()
                 run = False
-                pygame.quit()
-                quit()
                 sys.exit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
                 print(event.pos, play.is_Click(event.pos))
-            
 
         window_game.fill(Color.gray)
         heading.blit_center_top(window_game)
         name.blit_center_frame(window_game, heading)
-
         play.draw(window_game)
-
+        
         pygame.display.update()
 
 if __name__ == "__main__":
