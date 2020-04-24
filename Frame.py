@@ -8,14 +8,18 @@ square_title = pygame.transform.scale(small_title, ((int(small_title.get_width()
 
 class frame:
     def __init__(self,size=3, x=0, y=0):
+        if size is None:
+            self.size = 2
+        else:
+            self.size = size
         self.x = x
         self.y = y
         self.position = (self.x , self.y)
-        if size <=0: # Square
+        if self.size <=0: # Square
             self.frame = square_title
-        elif size==1: # Small
+        elif self.size==1: # Small
             self.frame = small_title
-        elif size==2: # Medium
+        elif self.size==2: # Medium
             self.frame = med_title
         else: # >=3 -> Big
             self.frame = big_title
@@ -50,4 +54,6 @@ class frame:
         return self.blit(screen, center_bottom)
 
     def blit(self, screen, position):
+        self.x = position[0]
+        self.y = position[1]
         screen.blit(self.frame, position)

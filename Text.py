@@ -4,8 +4,11 @@ import Font
 pygame.init()
 
 class text:
-    def __init__(self, text="", size=30, color = Color.black, font=Font.Courier):
-        self.size = size
+    def __init__(self, text="", size=25, color = Color.black, font=Font.Courier):
+        if size is None:
+            self.size = 25
+        else: 
+            self.size = size
         self.font = font
         self.color = color
         self.text = text
