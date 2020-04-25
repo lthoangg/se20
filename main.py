@@ -21,9 +21,9 @@ def menu():
     name = Text.text("PING PONG GAME", 32)
     heading = Frame.frame()
     play = Button.button("PLAY")
-    score_board = Button.button("Scoreboard",)
-    how_to_play = Button.button("How to play")
-    about_us = Button.button("About us")
+    score_board = Button.button("Coming soon")
+    how_to_play = Button.button("Coming soon")
+    about_us = Button.button("Comming soon")
     step = 5
 
     window_game.fill(Color.gray)
@@ -64,7 +64,7 @@ def Play(WIN):
     WIN.fill(Color.white)
 
     back_ground = background.Background()
-    b = ball.Ball(WIN)
+    b = ball.Ball()
     p1 = paddle.Paddle()
     p2 = paddle.Paddle(2)
 
@@ -77,13 +77,24 @@ def Play(WIN):
                 quit()
             pass
 
-        
-        back_ground.draw(WIN)
-        b.draw(WIN)
-        p1.draw(WIN)
-        p2.draw(WIN)
+        move(b, p1, p2)
+        draw(WIN, back_ground, b, p1, p2)
         pygame.display.update()
 
+def draw(WIN, background, ball, paddle1, paddle2):
+    background.draw(WIN)
+    ball.draw(WIN)
+    paddle1.draw(WIN)
+    paddle2.draw(WIN)
+
+def move(ball, paddle1, paddle2):
+    ball.move()
+    paddle1.move()
+    paddle2.move()
+    if ball.lose():
+        menu()
+    if ball.is_Collide(paddle1) or ball.is_Collide(paddle2):
+        ball.collide()
 
 if __name__ == "__main__":
     menu()
