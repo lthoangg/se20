@@ -12,7 +12,6 @@ import background
 # Initial game
 pygame.init()
 menu_image = pygame.transform.scale(pygame.image.load(os.path.join("imgs","menu.png")), (680, 720))
-paddle = pygame.image.load(os.path.join("imgs/paddles", "paddle1.png"))
 def menu():
     window_width = 1280
     window_height = 720
