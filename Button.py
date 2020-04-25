@@ -5,7 +5,6 @@ class button:
         self.text = Text.text(text,text_size)
         self.frame = Frame.frame(frameType)
         self.rect = self.frame.frame.get_rect()
-        print(self.text.width, self.text.height ,self.frame.frame.get_height())
 
     def draw(self, screen, position = None):
         if position is None:
