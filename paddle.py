@@ -1,14 +1,23 @@
 import pygame
 import os
 import time
-
-PADDLE_IMGS = [pygame.image.load(os.path.join("imgs/paddles","paddle1.png"))]
+PADDLE_IMGS = [pygame.image.load(os.path.join("imgs/paddles","paddle1.png")), pygame.image.load(os.path.join("imgs/paddles","paddle2.png")), pygame.image.load(os.path.join("imgs/paddles","paddle3.png")), pygame.image.load(os.path.join("imgs/paddles","paddle4.png")), pygame.image.load(os.path.join("imgs/paddles","paddle5.png")), pygame.image.load(os.path.join("imgs/paddles","paddle6.png")), pygame.image.load(os.path.join("imgs/paddles","paddle7.png")), pygame.image.load(os.path.join("imgs/paddles","paddle8.png"))]
 
 class Paddle(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, player=1):
         pygame.sprite.Sprite.__init__(self)
-        self.image = PADDLE_IMGS[0]
+        self.image = PADDLE_IMGS[3]
         self.rect = self.image.get_rect()
+        self.player = player
+        self.vel =0
+        self.width = self.rect[2]
+        self.height= self.rect[3]
+        if self.player==1:
+            self.x = 20
+        elif self.player ==2:
+            self.x = 1280 - self.width - 20
+        self.y = 310
+
 
     def move(self):
         self.y+=self.vel
@@ -30,4 +39,4 @@ class Paddle(pygame.sprite.Sprite):
             self.vel=-4
         elif self.y < 0:
             self.vel=4
-        WIN.blit(self.imgage,(self.x,self.y))
+        WIN.blit(self.image,(self.x,self.y))
