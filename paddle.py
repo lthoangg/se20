@@ -6,15 +6,18 @@ PADDLE_IMGS = [pygame.image.load(os.path.join("imgs/paddles","paddle1.png")), py
 class Paddle(pygame.sprite.Sprite):
     def __init__(self, player=1):
         pygame.sprite.Sprite.__init__(self)
-        self.image = self.PADDLE_IMGS[0]
+        self.image = PADDLE_IMGS[3]
         self.rect = self.image.get_rect()
         self.player = player
+        self.vel =0
+        self.width = self.rect[2]
+        self.height= self.rect[3]
         if self.player==1:
             self.x = 20
         elif self.player ==2:
-            self.x = 685
+            self.x = 1280 - self.width - 20
         self.y = 310
-        self.vel =0
+
 
     def move(self):
         self.y+=self.vel
@@ -36,4 +39,4 @@ class Paddle(pygame.sprite.Sprite):
             self.vel=-4
         elif self.y < 0:
             self.vel=4
-        WIN.blit(self.imgage,(self.x,self.y))
+        WIN.blit(self.image,(self.x,self.y))

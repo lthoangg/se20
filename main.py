@@ -12,7 +12,6 @@ import background
 # Initial game
 pygame.init()
 menu_image = pygame.transform.scale(pygame.image.load(os.path.join("imgs","menu.png")), (680, 720))
-paddle = pygame.image.load(os.path.join("imgs/paddles", "paddle1.png"))
 def menu():
     window_width = 1280
     window_height = 720
@@ -28,7 +27,7 @@ def menu():
     step = 5
 
     window_game.fill(Color.gray)
-    window_game.blit(menu_image, (340,0 ))
+    window_game.blit(menu_image, (340, 0))
     heading.blit_center_top(window_game)
     name.blit_center_frame(window_game, heading)
 
@@ -67,17 +66,22 @@ def Play(WIN):
     back_ground = background.Background()
     b = ball.Ball(WIN)
     p1 = paddle.Paddle()
+    p2 = paddle.Paddle(2)
 
     run =True
     # Running
     while run:
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
             pass
 
         
         back_ground.draw(WIN)
         b.draw(WIN)
         p1.draw(WIN)
+        p2.draw(WIN)
         pygame.display.update()
 
 
