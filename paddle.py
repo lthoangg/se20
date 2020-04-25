@@ -20,6 +20,7 @@ class Paddle(pygame.sprite.Sprite):
 
 
     def move(self):
+        self.rect = self.image.get_rect(center=(self.x + int(self.width/2), self.y + int(self.height/2)))
         self.y+=self.vel
         key_pressed= pygame.key.get_pressed()
         if self.player==1:
