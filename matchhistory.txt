@@ -1,0 +1,66 @@
+Friday, 24 Apr 2020 - 23:26:38:
+
+Player 1 got point 
+1-0
+Player 2 got point 
+1-1
+Player 2 got point 
+1-2
+Player 1 got point 
+2-2
+Player 2 got point 
+2-3
+Player 1 got point 
+3-3
+
+----------------
+3-3
+Draw 
+
+=========================
+Friday, 24 Apr 2020 - 23:36:42:
+
+Player 1 got point 
+1-0
+Player 2 got point 
+1-1
+Player 2 got point 
+1-2
+Player 1 got point 
+2-2
+Player 1 got point 
+3-2
+Player 2 got point 
+3-3
+Player 1 got point 
+4-3
+
+----------------
+4-3
+Player 1 won 
+
+=========================
+Friday, 24 Apr 2020 - 23:37:11:
+
+Player 1 got point 
+1-0
+Player 2 got point 
+1-1
+Player 2 got point 
+1-2
+Player 1 got point 
+2-2
+Player 2 got point 
+2-3
+Player 2 got point 
+2-4
+Player 2 got point 
+2-5
+
+----------------
+2-5
+Player 2 won 
+
+=========================
+Friday, 24 Apr 2020 - 23:41:41:
+
