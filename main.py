@@ -1,189 +1,102 @@
-import pygame
+import sys
 import os
-import time
-import paddle
-import ball
-import background
+import pygame
 import Color
-import datetime
-
+import Text
+import Frame
+import Button
+import ball
+import paddle
+import background
+# Initial game
 pygame.init()
-display_width = 1280
-display_height = 720
-
-black = (0, 0, 0)
-white = (255, 255, 255)
-red = (200, 0, 0)
-green = (0, 200, 0)
-bright_red = (255, 0, 0)
-bright_green = (0, 255, 0)
-gray = (96, 96, 96)
-
-WIN_WIDTH = 1280  # Screen WIDTH
-WIN_HEIGHT = 720  # Screen HEIGHT
-WIN = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
-WIN_ICON = pygame.image.load(os.path.join("imgs", "ball1.png"))
-
-#block_color = (53, 115, 255)
-
-windows = pygame.display.set_mode((display_width, display_height))
-pygame.display.set_caption('Ping Pong')
-
-#Text draw
-def text(surf, text, size, x, y):
-    font = pygame.font.SysFont("comicsansms", 20)
-    text_surface = font.render(text, True, Color.black)
-    text_rect = text_surface.get_rect()
-    text_rect.midtop = (x, y)
-    surf.blit(text_surface, text_rect)
-
-# Drawing graphic
-def draw(WIN, bg, p1, p2, b):
-    bg.draw(WIN)
-    b.draw(WIN)
-    p1.draw(WIN)
-    p2.draw(WIN)
-
-# Calculating logical
-def move(p1, p2, b):
-    p1.move()
-    p2.move()
-    b.move()
-    b.collide(p1)
-    b.collide(p2)
-    if b.lose() ==1:
-        p2.score +=1
-        b.__init__(WIN)
-        # Pass scores into matchhistory.txt
-        f = open("matchhistory.txt", "a")
-        f.write("Player 2 got point \n")
-        f.write(repr(p1.score) + "-" + repr(p2.score) + "\n")
-    if b.lose() ==2:
-        p1.score +=1
-        b.__init__(WIN)
-        # Pass scores into matchhistory.txt
-        f = open("matchhistory.txt", "a")
-        f.write("Player 1 got point \n")
-        f.write(repr(p1.score) + "-" + repr(p2.score) + "\n")
-    
-
-def text_objects(text, font):
-    textSurface = font.render(text, True, Color.black)
-    return textSurface, textSurface.get_rect()
-
-
-def button(msg, x, y, w, h, ic, ac, action=None):
-    mouse = pygame.mouse.get_pos()
-    click = pygame.mouse.get_pressed()
-    if x + w > mouse[0] > x and y + h > mouse[1] > y:
-        pygame.draw.rect(windows, ac, (x, y, w, h))
-
-        if click[0] == 1 and action != None:
-            action()
-    else:
-        pygame.draw.rect(windows, ic, (x, y, w, h))
-
-    smallText = pygame.font.SysFont("comicsansms", 20)
-    textSurf, textRect = text_objects(msg, smallText)
-    textRect.center = ((x + int(w / 2)), y + int(h / 2))
-    windows.blit(textSurf, textRect)
-
-
-#Main menu
+menu_image = pygame.transform.scale(pygame.image.load(os.path.join("imgs","menu.png")), (680, 720))
 def menu():
-    background_image = pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "menu.png")))
-    music = pygame.mixer.music.load(os.path.join('sound','music.mp3'))
-    pygame.mixer.music.set_volume(0.3)
-    pygame.mixer.music.play()
+    window_width = 1280
+    window_height = 720
+    window_game = pygame.display.set_mode((window_width, window_height))
+    pygame.display.set_caption("Ping Pong")
 
-    pygame.init()
-    intro = True
+    name = Text.text("PING PONG GAME", 32)
+    heading = Frame.frame()
+    play = Button.button("PLAY")
+    score_board = Button.button("Coming soon")
+    how_to_play = Button.button("Coming soon")
+    about_us = Button.button("Comming soon")
+    step = 5
 
-    start() # Make sure start() will be executed first
+    window_game.fill(Color.gray)
+    window_game.blit(menu_image, (340, 0))
+    heading.blit_center_top(window_game)
+    name.blit_center_frame(window_game, heading)
 
-    while intro:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
+    play.draw(window_game)
 
-        windows.fill(Color.gray)
-        windows.blit(background_image,(300, 50))
-        largeText = pygame.font.Font('freesansbold.ttf', 115)
-        TextSurf, TextRect = text_objects("Ping Pong", largeText)
-        TextRect.center = (int(display_width / 2), int(display_height / 2))
-        windows.blit(TextSurf, TextRect)
-
-        button("GO!", 450, 450, 100, 50, Color.green, Color.bright_green, main)
-        button("Quit", 750, 450, 100, 50, Color.red, Color.bright_red, exit)
-
-        pygame.display.update()
-# Things must be done before starting game
-def start():
-    # Get date and time of the match
-    t = time.localtime()
-    current_time = time.strftime("%A, %e %b %Y - %H:%M:%S", t)
-    f = open("matchhistory.txt", "a")
-    f.write(current_time + ":\n")
-    f.write("\n")
-
-# Define the winner
-def result(p1, p2):
-    if p1.score > p2.score:
-        return 1
-    if p1.score < p2.score: 
-        return 2
-    if p1.score == p2.score:
-        return 3
-    
-# Main game
-def main():
-    pygame.init()
-    # pygame.display.set_icon(WIN_ICON)
-    clock = pygame.time.Clock()
-
-    p1 = paddle.Paddle(1, WIN)
-    p2 = paddle.Paddle(2, WIN)
-    b = ball.Ball(WIN)
-    bg = background.Background()
+    score_board.draw(window_game, (play.frame.x, play.frame.y+play.frame.height+ step))
+    how_to_play.draw(window_game, (score_board.frame.x, score_board.frame.y +score_board.frame.height + step))
+    about_us.draw(window_game, (how_to_play.frame.x, how_to_play.frame.y + how_to_play.frame.height + step))
 
     run = True
-
-    # Game running
+    # Running
     while run:
-        clock.tick(60)  # FPS of game
         for event in pygame.event.get():
-            # Quit button            
             if event.type == pygame.QUIT:
-                if result(p1, p2) == 1:
-                    f = open("matchhistory.txt", "a")
-                    f.write("\n----------------\n")
-                    f.write(repr(p1.score) + "-" + repr(p2.score) + "\n")
-                    f.write("Player 1 won \n")
-                    f.write("\n=========================\n")
-                    f.close()
-                if result(p1, p2) ==2:
-                    f = open("matchhistory.txt", "a")
-                    f.write("\n----------------\n")
-                    f.write(repr(p1.score) + "-" + repr(p2.score) + "\n")
-                    f.write("Player 2 won \n")
-                    f.write("\n=========================\n")
-                    f.close()
-                if result(p1, p2) == 3:
-                    f = open("matchhistory.txt", "a")
-                    f.write("\n----------------\n")
-                    f.write(repr(p1.score) + "-" + repr(p2.score) + "\n")
-                    f.write("Draw \n")
-                    f.write("\n=========================\n")
-                    f.close()
                 run = False
+                sys.exit()
+            
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if play.is_Click(event.pos):
+                    Play(window_game)
+                    print("click play")
+                elif score_board.is_Click(event.pos):
+                    print("click scoreboard")
+                elif how_to_play.is_Click(event.pos):
+                    print("click how_to play")
+                elif about_us.is_Click(event.pos):
+                   print("click about us")
+                else:
+                    print("Missclick")
+        
+        pygame.display.update()
+        
+def Play(WIN):
+    WIN.fill(Color.white)
+
+    back_ground = background.Background()
+    b = ball.Ball()
+    p1 = paddle.Paddle()
+    p2 = paddle.Paddle(2)
+
+    clock = pygame.time.Clock()
+
+
+    run =True
+    # Running
+    while run:
+        clock.tick(60)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-        
-        draw(WIN, bg, p1, p2, b)
-        move(p1, p2, b)
+
+        move(b, p1, p2)
+        draw(WIN, back_ground, b, p1, p2)
         pygame.display.update()
 
+def draw(WIN, background, ball, paddle1, paddle2):
+    background.draw(WIN)
+    ball.draw(WIN)
+    paddle1.draw(WIN)
+    paddle2.draw(WIN)
+
+def move(ball, paddle1, paddle2):
+    ball.move()
+    paddle1.move()
+    paddle2.move()
+    if ball.lose():
+        menu()
+    if ball.is_Collide(paddle1) or ball.is_Collide(paddle2):
+        ball.collide()
 
 if __name__ == "__main__":
     menu()

@@ -1,6 +1,6 @@
 import pygame
 import os
-bg_IMGS=[pygame.image.load(os.path.join("imgs", "bg2.png"))]
+bg_IMGS=[pygame.image.load(os.path.join("imgs/backgrounds", "bg1.png")), pygame.image.load(os.path.join("imgs/backgrounds", "bg2.png")), pygame.image.load(os.path.join("imgs/backgrounds", "bg3.png")), pygame.image.load(os.path.join("imgs/backgrounds", "bg4.png"))]
 class Background:
     def __init__(self):
         self.x =0
