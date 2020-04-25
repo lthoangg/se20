@@ -31,6 +31,8 @@ def move(p1, p2, b):
     b.move()
     b.collide(p1)
     b.collide(p2)
+    if b.lose():
+        main()
 
 
 def text_objects(text, font):
@@ -57,8 +59,9 @@ def button(msg, x, y, w, h, ic, ac, action=None):
 #Main menu
 def menu():
     background_image = pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "menu.png")))
-    music = pygame.mixer.music.load('music.mp3')
-    pygame.mixer.music.play(-1)
+    music = pygame.mixer.music.load(os.path.join('sound','music.mp3'))
+    pygame.mixer.music.set_volume(0.3)
+    pygame.mixer.music.play()
 
     pygame.init()
     intro = True
@@ -69,7 +72,7 @@ def menu():
                 pygame.quit()
                 quit()
 
-        windows.fill(Color.white)
+        windows.fill(Color.gray)
         windows.blit(background_image,(300, 50))
         largeText = pygame.font.Font('freesansbold.ttf', 115)
         TextSurf, TextRect = text_objects("Ping Pong", largeText)
@@ -80,6 +83,7 @@ def menu():
         button("Quit", 750, 450, 100, 50, Color.red, Color.bright_red, exit)
 
         pygame.display.update()
+
 
 
 # Main game
@@ -103,7 +107,7 @@ def main():
 
     # Game running
     while run:
-        clock.tick(120)  # FPS of game
+        clock.tick(90)  # FPS of game
         for event in pygame.event.get():
             # Quit button            
             if event.type == pygame.QUIT:
