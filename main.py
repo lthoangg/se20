@@ -6,7 +6,7 @@ import Text
 import Frame
 import Button
 import ball
-import paddle
+import Player
 import background
 # Initial game
 pygame.init()
@@ -64,13 +64,12 @@ def Play(WIN):
 
     back_ground = background.Background()
     b = ball.Ball()
-    p1 = paddle.Paddle()
-    p2 = paddle.Paddle(2)
-
-    clock = pygame.time.Clock()
-
-
+    p1 = Player.player("LTH")
+    p2 = Player.player("Not lthoangg")
+    print("Player:", p1.id)
+    print("Player:", p2.id)
     run =True
+    clock = pygame.time.Clock()
     # Running
     while run:
         clock.tick(60)
@@ -78,24 +77,36 @@ def Play(WIN):
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+            pass
+        
+
 
         move(b, p1, p2)
         draw(WIN, back_ground, b, p1, p2)
         pygame.display.update()
 
-def draw(WIN, background, ball, paddle1, paddle2):
+def draw(WIN, background, ball, player1, player2):
     background.draw(WIN)
     ball.draw(WIN)
-    paddle1.draw(WIN)
-    paddle2.draw(WIN)
+    player1.character.draw(WIN)
+    player2.character.draw(WIN)
+    player1.draw_Score(WIN)
+    player2.draw_Score(WIN)
 
-def move(ball, paddle1, paddle2):
+def move(ball, player1, player2):
     ball.move()
-    paddle1.move()
-    paddle2.move()
-    if ball.lose():
-        menu()
-    if ball.is_Collide(paddle1) or ball.is_Collide(paddle2):
+    player1.character.move()
+    player2.character.move()
+
+    if ball.is_Over_Left():
+        player2.win_Game()
+        #player1.character.reset()
+    elif ball.is_Over_Right():
+        player1.win_Game()
+        #player2.character.reset()
+
+        
+    if ball.is_Collide(player1.character) or ball.is_Collide(player2.character):
         ball.collide()
 
 if __name__ == "__main__":
