@@ -8,6 +8,8 @@ import Button
 import ball
 import Player
 import background
+import log
+
 # Initial game
 pygame.init()
 menu_image = pygame.transform.scale(pygame.image.load(os.path.join("imgs","Menu.png")), (1280, 720))
@@ -62,10 +64,12 @@ def menu():
 def Play(WIN):
     WIN.fill(Color.white)
 
+    log.Log.start()
+
     back_ground = background.Background()
     b = ball.Ball()
-    p1 = Player.player("LTH")
-    p2 = Player.player("Not lthoangg")
+    p1 = Player.player(1)
+    p2 = Player.player(2)
     print("Player:", p1.id)
     print("Player:", p2.id)
     run =True
@@ -75,6 +79,7 @@ def Play(WIN):
         clock.tick(60)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                log.Log.result(p1, p2)
                 pygame.quit()
                 quit()
             pass
@@ -100,9 +105,11 @@ def move(ball, player1, player2):
 
     if ball.is_Over_Left():
         player2.win_Game()
+        log.Log.score(player1, player2)
         #player1.character.reset()
     elif ball.is_Over_Right():
         player1.win_Game()
+        log.Log.score(player1, player2)
         #player2.character.reset()
 
         
