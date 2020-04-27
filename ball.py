@@ -11,6 +11,8 @@ class Ball(pygame.sprite.Sprite):
         self.y = 340
         self.r = 20
         self.vx = 8
+        if randint(0, 1) == 1:
+            self.vx = -self.vx
         self.vy = randint(-4, 4)
         self.image = pygame.transform.scale(BALL_IMGS[0], (2*self.r, 2*self.r))
         self.rect = self.image.get_rect()
@@ -21,17 +23,15 @@ class Ball(pygame.sprite.Sprite):
         self.y += self.vy
         if self.y <= 0:
             self.vy = abs(self.vy)
-            print("wall top")
         if self.y + 2*self.r >= 720:
             self.y = 720 - self.r * 2
             self.vy = - abs(self.vy)
-            print("Wall bottom")
-    
-    def lose(self):
-        if self.x <= 0 or self.x >= 1260:
-            return True
-        else:
-            return False
+
+    def reset(self):
+        self.vx = -self.vx
+        self.x = 620
+        self.y = 340
+        self.vy = randint(-4, 4)
 
     def draw(self,WIN):        
         WIN.blit(self.image,(self.x,self.y))
@@ -40,9 +40,24 @@ class Ball(pygame.sprite.Sprite):
         return self.rect.colliderect(paddle.rect)
 
     def collide(self):
-        collideSound.play()
+        #collideSound.play()
         if self.x < 640:
             self.vx = abs(self.vx)
         else:
             self.vx = -abs(self.vx)
         self.vy = randint(-4, 4)
+
+    def is_Over_Left(self):
+        if self.x <=0:
+            self.reset()
+            return True
+        else:
+            return False
+
+    def is_Over_Right(self):
+        if self.x >= 1260:
+            self.reset()
+            return True
+        else:
+            return False
+

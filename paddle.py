@@ -1,10 +1,11 @@
 import pygame
 import os
 import time
+from itertools import count
 PADDLE_IMGS = [pygame.image.load(os.path.join("imgs/paddles","paddle1.png")), pygame.image.load(os.path.join("imgs/paddles","paddle2.png")), pygame.image.load(os.path.join("imgs/paddles","paddle3.png")), pygame.image.load(os.path.join("imgs/paddles","paddle4.png")), pygame.image.load(os.path.join("imgs/paddles","paddle5.png")), pygame.image.load(os.path.join("imgs/paddles","paddle6.png")), pygame.image.load(os.path.join("imgs/paddles","paddle7.png")), pygame.image.load(os.path.join("imgs/paddles","paddle8.png"))]
 
 class Paddle(pygame.sprite.Sprite):
-    def __init__(self, player=1):
+    def __init__(self, player):
         pygame.sprite.Sprite.__init__(self)
         self.image = PADDLE_IMGS[3]
         self.rect = self.image.get_rect()
@@ -43,3 +44,7 @@ class Paddle(pygame.sprite.Sprite):
         elif self.y < 0:
             self.vel=4
         WIN.blit(self.image,(self.x,self.y))
+
+    def reset(self):
+        self.y = 310
+        self.vel = 0
