@@ -13,8 +13,14 @@ class player:
         self.ID = count(1)
 
     def win_Game(self):
+        f = open("MH.txt", "a")
         self.score += 1
-        print("Player",self.id,",score:", self.score) 
+        if self.id == 1:
+            f.write("Player 1 got point\n")
+        if self.id == 2:
+            f.write("Player 2 got point\n")
+        f.close()
+        
 
     def draw_Score(self, WIN):
         text = str(self.score)
@@ -26,5 +32,3 @@ class player:
             center_x = int(3*WIN.get_width()/4 - (self.text.width/2))
         
         self.text.blit(WIN, (center_x, center_y))
-            
-            
