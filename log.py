@@ -1,8 +1,6 @@
 import os
-import stat
 import time
 import Player
-import ball
 
 # This will record events of the match
 class Log:
