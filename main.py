@@ -10,15 +10,15 @@ import Player
 import background
 # Initial game
 pygame.init()
-menu_image = pygame.transform.scale(pygame.image.load(os.path.join("imgs","menu.png")), (680, 720))
+menu_image = pygame.transform.scale(pygame.image.load(os.path.join("imgs","Menu.png")), (1280, 720))
 def menu():
     window_width = 1280
     window_height = 720
     window_game = pygame.display.set_mode((window_width, window_height))
     pygame.display.set_caption("Ping Pong")
 
-    name = Text.text("PING PONG GAME", 32)
-    heading = Frame.frame()
+    #name = Text.text("PING PONG GAME", 32)
+    #heading = Frame.frame()
     play = Button.button("PLAY")
     score_board = Button.button("Coming soon")
     how_to_play = Button.button("Coming soon")
@@ -26,9 +26,9 @@ def menu():
     step = 5
 
     window_game.fill(Color.gray)
-    window_game.blit(menu_image, (340, 0))
-    heading.blit_center_top(window_game)
-    name.blit_center_frame(window_game, heading)
+    window_game.blit(menu_image, (0, 0))
+    #heading.blit_center_top(window_game)
+    #name.blit_center_frame(window_game, heading)
 
     play.draw(window_game)
 
