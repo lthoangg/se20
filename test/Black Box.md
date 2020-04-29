@@ -12,3 +12,4 @@
 |Player 2's paddle move down | Press Down arrow key to use the fuction | Passed |
 |Ball colided | The ball will go to the opposite direction after collied with the paddle | Passed |
 |Scoring system | The system added 1 score for the player | Passed |
+|Match history system | Automatically record the match of 2 players | Passed |
