@@ -2,7 +2,9 @@ import Text, Frame
 
 class button:
     def __init__(self, text, text_size=25, frameType=2):
-        self.text = Text.text(text,text_size)
+        self.passage = text
+        self.text_size = text_size
+        self.text = Text.text(self.passage, self.text_size)
         self.frame = Frame.frame(frameType)
         self.rect = self.frame.frame.get_rect()
 
@@ -36,3 +38,12 @@ class button:
             self.frame.is_Hover(True)
         else:
             self.frame.is_Hover(False)
+
+    def update_Text(self, text):
+        passage = text
+        temp = Text.text(passage, self.text_size)
+        if temp.width <= self.frame.width:
+            self.text = temp
+        else:
+            pass
+        

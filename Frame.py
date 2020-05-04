@@ -1,7 +1,8 @@
 import os
 import pygame
 
-big_title = pygame.image.load(os.path.join("imgs/frames/", "frame.png"))
+big_title = pygame.image.load(os.path.join("imgs/frames/", "frame2.png"))
+big_title2 = pygame.image.load(os.path.join("imgs/frames/", "frame1.png"))
 med_title = pygame.transform.scale(big_title, ((int(big_title.get_width()/2), int(big_title.get_height()/2))))
 small_title = pygame.transform.scale(med_title, ((int(med_title.get_width()/2), int(med_title.get_height()/2))))
 square_title = pygame.transform.scale(small_title, ((int(small_title.get_width()/2), int(small_title.get_width()/2))))
@@ -30,11 +31,10 @@ class frame:
     def is_Hover(self, is_hover):
         if is_hover == True:
             self.temp =self.frame
-            self.frame = None
+            self.frame = big_title2
         else:
             self.frame = self.temp
         
-
     def blit_center_top(self, screen):
         self.x = int(screen.get_width()/2) - int(self.width/2)
         self.y = 20

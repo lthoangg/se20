@@ -13,6 +13,8 @@ class Paddle(pygame.sprite.Sprite):
         self.vel =0
         self.width = self.rect[2]
         self.height= self.rect[3]
+        self.score = 0
+        
         if self.player==1:
             self.x = 20
         elif self.player ==2:
