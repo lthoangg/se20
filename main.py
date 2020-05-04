@@ -12,7 +12,7 @@ import log
 
 # Initial game
 pygame.init()
-menu_image = pygame.transform.scale(pygame.image.load(os.path.join("imgs","Menu.png")), (1280, 720))
+menu_image = pygame.transform.scale(pygame.image.load(os.path.join("imgs","menu.png")), (1280, 720))
 def menu():
     window_width = 1280
     window_height = 720
