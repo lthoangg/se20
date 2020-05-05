@@ -155,6 +155,12 @@ def Play(WIN, name1, name2):
     # Running
     while run:
         clock.tick(60)
+        # Game will be ended whenever
+        # a player got 11 point
+        if p1.score == 11 or p2.score == 11:
+            log.Log.result(p1, p2)
+            pygame.quit()
+            quit()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 log.Log.result(p1, p2)
