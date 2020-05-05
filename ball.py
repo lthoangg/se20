@@ -13,10 +13,11 @@ class Ball(pygame.sprite.Sprite):
         self.vx = 8
         if randint(0, 1) == 1:
             self.vx = -self.vx
-        self.vy = randint(-4, 4)
+        else:
+            pass
+        self.vy = self.reset_vy()
         self.image = pygame.transform.scale(BALL_IMGS[0], (2*self.r, 2*self.r))
         self.rect = self.image.get_rect()
-    
     def move(self):
         self.rect = self.image.get_rect(center=(self.x + self.r, self.y + self.r))
         self.x += self.vx
@@ -27,11 +28,14 @@ class Ball(pygame.sprite.Sprite):
             self.y = 720 - self.r * 2
             self.vy = - abs(self.vy)
 
+    def reset_vy(self):
+        return randint(-4, 4)
+
     def reset(self):
         self.vx = -self.vx
         self.x = 620
         self.y = 340
-        self.vy = randint(-4, 4)
+        self.vy = self.reset_vy()
 
     def draw(self,WIN):        
         WIN.blit(self.image,(self.x,self.y))
@@ -45,7 +49,7 @@ class Ball(pygame.sprite.Sprite):
             self.vx = abs(self.vx)
         else:
             self.vx = -abs(self.vx)
-        self.vy = randint(-4, 4)
+        self.vy = self.reset_vy()
 
     def is_Over_Left(self):
         if self.x <=0:

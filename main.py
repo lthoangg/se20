@@ -48,8 +48,10 @@ def menu():
             
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if play.is_Click(event.pos):
-                    Play(window_game)
                     print("click play")
+                    run = False
+                    set_Name(window_game)
+                                 
                 elif score_board.is_Click(event.pos):
                     print("click scoreboard")
                 elif how_to_play.is_Click(event.pos):
@@ -58,9 +60,83 @@ def menu():
                    print("click about us")
                 else:
                     print("Missclick")
+            pass
         
         pygame.display.update()
         
+
+def set_Name(WIN):
+    Title_p1 = Button.button("Player 1", 30, 2)
+    Title_p2 = Button.button("Player 2", 30, 2)
+    WIN.fill(Color.white)
+    WIN.blit(menu_image, (0, 0))
+    Title_p1.draw(WIN, (WIN.get_width()/4 - 125, WIN.get_height()/2 - 50))
+    Title_p2.draw(WIN, (3*WIN.get_width()/4 - 125, WIN.get_height()/2 - 50))
+
+    name1 = name2 = ""
+    Placeholder_p1 = Button.button(name1, 30)
+    Placeholder_p2 = Button.button(name2, 30)
+    
+    Back = Button.button("Back")
+    Next = Button.button("Next")
+
+    Back.draw(WIN, 2)
+    Next.draw(WIN, 3)
+    running = True
+    while running:
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+                pygame.quit()
+                quit()
+                sys.exit()
+            
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x,y = event.pos
+                if Back.is_Click((x, y)):
+                    running = False
+                    menu()
+                elif Next.is_Click((x, y)) and name1 != "" and name2 != "":
+                    running = False
+                    Play(WIN)
+                if Title_p1.is_Click((x, y)):
+                    n1 = True
+                    n2 = False
+                elif Title_p2.is_Click((x, y)):
+                    n2 = True
+                    n1 = False
+                else:
+                    pass
+            if event.type == pygame.KEYDOWN:
+                try:
+                    if event.key == pygame.K_BACKSPACE:
+                        if n1:
+                            name1 = name1[:-1]
+                        if n2:
+                            name2 = name2[:-1]
+                    elif event.key in (pygame.K_LSHIFT, pygame.K_RSHIFT):
+                        print("Shift")
+                    else:  
+                        if n1 and len(name1) <= 12:              
+                            name1 += pygame.key.name(event.key)
+                        elif n2 and len(name2) <= 12:    
+                            name2 += pygame.key.name(event.key)
+                except:
+                    n1 = n2 = False   
+            Placeholder_p1.update_Text(name1)
+            Placeholder_p2.update_Text(name2)
+            
+            while len(name1) > 12:
+                name1 = name1[:-1]
+            while len(name2) > 12:
+                name2 = name2[:-1]
+
+        Placeholder_p1.draw(WIN, (WIN.get_width()/4 - 125, WIN.get_height()/2 + 100))
+        Placeholder_p2.draw(WIN, (3*WIN.get_width()/4 - 125, WIN.get_height()/2 + 100))
+        pygame.display.update()
+
+
 def Play(WIN):
     WIN.fill(Color.white)
 
