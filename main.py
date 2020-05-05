@@ -99,7 +99,7 @@ def set_Name(WIN):
                     menu()
                 elif Next.is_Click((x, y)) and name1 != "" and name2 != "":
                     running = False
-                    Play(WIN)
+                    Play(WIN, name1, name2)
                 if Title_p1.is_Click((x, y)):
                     n1 = True
                     n2 = False
@@ -137,17 +137,19 @@ def set_Name(WIN):
         pygame.display.update()
 
 
-def Play(WIN):
+def Play(WIN, name1, name2):
     WIN.fill(Color.white)
 
     log.Log.start()
 
     back_ground = background.Background()
     b = ball.Ball()
-    p1 = Player.player(1)
-    p2 = Player.player(2)
+    p1 = Player.player(name1)
+    p2 = Player.player(name2)
     print("Player:", p1.id)
+    print(p1.name)
     print("Player:", p2.id)
+    print(p2.name)
     run =True
     clock = pygame.time.Clock()
     # Running
