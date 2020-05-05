@@ -1,5 +1,6 @@
 import sys
 import os
+import time
 import pygame
 import Color
 import Text
@@ -99,7 +100,7 @@ def set_Name(WIN):
                     menu()
                 elif Next.is_Click((x, y)) and name1 != "" and name2 != "":
                     running = False
-                    Play(WIN)
+                    Play(WIN, name1, name2)
                 if Title_p1.is_Click((x, y)):
                     n1 = True
                     n2 = False
@@ -137,17 +138,18 @@ def set_Name(WIN):
         pygame.display.update()
 
 
-def Play(WIN):
+def Play(WIN, name1, name2):
     WIN.fill(Color.white)
-
-    log.Log.start()
 
     back_ground = background.Background()
     b = ball.Ball()
-    p1 = Player.player(1)
-    p2 = Player.player(2)
+    p1 = Player.player(name1)
+    p2 = Player.player(name2)
+    log.Log.start(p1,p2)
     print("Player:", p1.id)
+    print(p1.name)
     print("Player:", p2.id)
+    print(p2.name)
     run =True
     clock = pygame.time.Clock()
     # Running
@@ -179,14 +181,21 @@ def move(ball, player1, player2):
     player1.character.move()
     player2.character.move()
 
-    if ball.is_Over_Left():
-        player2.win_Game()
-        log.Log.score(player1, player2)
-        #player1.character.reset()
-    elif ball.is_Over_Right():
-        player1.win_Game()
-        log.Log.score(player1, player2)
-        #player2.character.reset()
+    if ball.is_Over():
+        if ball.is_Over_Left():
+            player2.win_Game()
+            log.Log.score(player1, player2)
+            player1.character.reset()
+        elif ball.is_Over_Right():
+            player1.win_Game()
+            log.Log.score(player1, player2)
+            player2.character.reset()
+        # A "n" sec gap added
+        n = 2
+        for i in range (1,n+1):
+            print(i)
+            time.sleep(1)
+        print("Go!")
 
         
     if ball.is_Collide(player1.character) or ball.is_Collide(player2.character):
