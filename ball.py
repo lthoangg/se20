@@ -65,3 +65,7 @@ class Ball(pygame.sprite.Sprite):
         else:
             return False
 
+    def is_Over(self):
+        if self.x <= 0 or self.x >= 1260:
+            return True
+
