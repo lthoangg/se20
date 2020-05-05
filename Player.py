@@ -21,7 +21,6 @@ class player:
             f.write("Player 2 got point\n")
         f.close()
         
-
     def draw_Score(self, WIN):
         text = str(self.score)
         self.text = Text.text(text, 60, color=Color.gray)
@@ -32,3 +31,5 @@ class player:
             center_x = int(3*WIN.get_width()/4 - (self.text.width/2))
         
         self.text.blit(WIN, (center_x, center_y))
+
+    #def set_Name 
