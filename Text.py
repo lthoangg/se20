@@ -11,7 +11,10 @@ class text:
             self.size = size
         self.font = font
         self.color = color
-        self.text = text
+        if text is None:
+            self.text = ""
+        else:
+            self.text = text
         self.position = (0, 0)
         self.Font = pygame.font.SysFont(self.font, self.size)
         self.Text = self.Font.render(self.text, True, self.color)

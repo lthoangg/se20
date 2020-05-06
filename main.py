@@ -98,7 +98,7 @@ def set_Name(WIN):
                 if Back.is_Click((x, y)):
                     running = False
                     menu()
-                elif Next.is_Click((x, y)) and name1 != "" and name2 != "":
+                elif Next.is_Click((x, y)): #and name1 != "" and name2 != "":
                     running = False
                     Play(WIN, name1, name2)
                 if Title_p1.is_Click((x, y)):
@@ -152,6 +152,9 @@ def Play(WIN, name1, name2):
     print(p2.name)
     run =True
     clock = pygame.time.Clock()
+    pygame.display.update()
+    draw(WIN, back_ground, b, p1, p2)
+    wait(WIN)
     # Running
     while run:
         clock.tick(60)
@@ -168,11 +171,8 @@ def Play(WIN, name1, name2):
                 quit()
             pass
         
-
-
-        move(b, p1, p2)
+        move(WIN, b, p1, p2)
         draw(WIN, back_ground, b, p1, p2)
-        pygame.display.update()
 
 def draw(WIN, background, ball, player1, player2):
     background.draw(WIN)
@@ -181,8 +181,9 @@ def draw(WIN, background, ball, player1, player2):
     player2.character.draw(WIN)
     player1.draw_Score(WIN)
     player2.draw_Score(WIN)
+    pygame.display.update()
 
-def move(ball, player1, player2):
+def move(WIN, ball, player1, player2):
     ball.move()
     player1.character.move()
     player2.character.move()
@@ -196,16 +197,26 @@ def move(ball, player1, player2):
             player1.win_Game()
             log.Log.score(player1, player2)
             player2.character.reset()
-        # A "n" sec gap added
-        n = 2
-        for i in range (1,n+1):
-            print(i)
-            time.sleep(1)
-        print("Go!")
-
         
+        wait(WIN)
+    
     if ball.is_Collide(player1.character) or ball.is_Collide(player2.character):
         ball.collide()
+
+def wait(WIN, bg = None):
+    # A "n" gap added
+    n = ["Ready?", "Set", "GO!"]
+    wait = Text.text(None, 140)
+    for text in n:
+        if bg is None:
+            bg = background.Background()
+        bg.draw(WIN)
+        wait.set_Text(text)
+        wait.blit_center(WIN)
+        pygame.display.update()
+        time.sleep(2/3)
+        
+    del wait
 
 if __name__ == "__main__":
     menu()
